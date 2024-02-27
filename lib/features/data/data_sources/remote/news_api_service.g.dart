@@ -15,10 +15,9 @@ class _NewsApiService implements NewsApiService {
 
   String? baseUrl;
 
-
   @override
   Future<HttpResponse<List<ArticleModel>>> getNewsArticle(
-      {String? apikey, String? country, String? category}) async{
+      {String? apikey, String? country, String? category}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'apiKey': apikey,
@@ -32,7 +31,7 @@ class _NewsApiService implements NewsApiService {
         _setStreamType<HttpResponse<List<ArticleModel>>>(
             Options(method: 'GET', headers: _headers, extra: _extra)
                 .compose(_dio.options, '/top-headlines',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     List<ArticleModel> value = _result.data!['articles']
         .map<ArticleModel>(
@@ -40,8 +39,6 @@ class _NewsApiService implements NewsApiService {
         .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
-
-
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
@@ -56,5 +53,4 @@ class _NewsApiService implements NewsApiService {
     }
     return requestOptions;
   }
-
 }

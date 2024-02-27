@@ -6,6 +6,7 @@ import 'package:news_app/features/presentation/block/article/remote/remote_artic
 
 class RemoteArticlesBloc extends Bloc<RemoteArticlesEvent, RemoteArticleState> {
   final GetArticleUseCase _getArticleUseCase;
+
   RemoteArticlesBloc(this._getArticleUseCase)
       : super(const RemoteArticlesLoading()) {
     on<GetArticles>(onGetArticles);
@@ -19,6 +20,7 @@ class RemoteArticlesBloc extends Bloc<RemoteArticlesEvent, RemoteArticleState> {
       emit(RemoteArticlesDone(dataState.data!));
     }
     if (dataState is DataFailed) {
+      print(dataState.error!.message);
       emit(RemoteArticlesError(dataState.error!));
     }
   }
