@@ -6,8 +6,7 @@ part 'news_api_service.g.dart';
 
 @RestApi()
 abstract class NewsApiService {
-  factory NewsApiService(Dio dio, {String baseUrl}) = _NewsApiService;
-
+  factory NewsApiService(Dio dio) = _NewsApiService;
   @GET('/top-headlines')
   Future<HttpResponse<List<ArticleModel>>> getNewsArticle({
     @Query("apikey") String? apikey,

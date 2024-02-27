@@ -1,7 +1,13 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
 part of 'news_api_service.dart';
 
-abstract class _NewsApiService implements NewsApiService {
-  _NewsApiService(this._dio, this.baseUrl) {
+// **************************************************************************
+// RetrofitGenerator
+// **************************************************************************
+
+class _NewsApiService implements NewsApiService {
+  _NewsApiService(this._dio, {this.baseUrl}) {
     baseUrl ??= 'https://newsapi.org/v2';
   }
 
@@ -9,11 +15,13 @@ abstract class _NewsApiService implements NewsApiService {
 
   String? baseUrl;
 
-  Future<HttpResponse<List<ArticleModel>>> getNewsArticles(
-      {apiKey, country, category}) async {
+
+  @override
+  Future<HttpResponse<List<ArticleModel>>> getNewsArticle(
+      {String? apikey, String? country, String? category}) async{
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'apiKey': apiKey,
+      r'apiKey': apikey,
       r'country': country,
       r'category': category
     };
@@ -24,7 +32,7 @@ abstract class _NewsApiService implements NewsApiService {
         _setStreamType<HttpResponse<List<ArticleModel>>>(
             Options(method: 'GET', headers: _headers, extra: _extra)
                 .compose(_dio.options, '/top-headlines',
-                    queryParameters: queryParameters, data: _data)
+                queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     List<ArticleModel> value = _result.data!['articles']
         .map<ArticleModel>(
@@ -32,6 +40,8 @@ abstract class _NewsApiService implements NewsApiService {
         .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
+
+
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
@@ -46,4 +56,5 @@ abstract class _NewsApiService implements NewsApiService {
     }
     return requestOptions;
   }
+
 }
