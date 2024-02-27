@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/config/theme/app_themes.dart';
+import 'package:news_app/features/presentation/pages/home/daily_news.dart';
 import 'package:news_app/infection_container.dart';
 
 void main() async {
@@ -12,7 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Container(),
+      debugShowCheckedModeBanner: false,
+      theme: theme(),
+      home: DailyNews(),
     );
   }
 }
