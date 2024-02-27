@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:news_app/features/data/models/article.dart';
 import 'package:retrofit/retrofit.dart';
+
 part 'news_api_service.g.dart';
 
 @RestApi()
